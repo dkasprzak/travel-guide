@@ -3,7 +3,7 @@
 Przewodnik wyjazdowy w jednym pliku HTML: plan dnia, dojazd, jedzenie, puby, sklepy i checklista dokumentów. Działa na telefonie, w trybie jasnym i ciemnym, i nie potrzebuje żadnego builda.
 
 **Aktualny wyjazd:** Newcastle Weekend 2026
-**Strona:** `https://<twoj-login>.github.io/<nazwa-repo>/`
+**Strona:** `https://dkasprzak.github.io/travel-guide/`
 
 
 ## Nowy wyjazd w 5 krokach
