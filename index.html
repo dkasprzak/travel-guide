@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Newcastle Weekend 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: one narrow reading column, black-and-white stripe band as the only loud element; metro line drawn as a route strip */
+:root{
+  --bg:#f6f7f8; --surface:#ffffff; --ink:#111316; --muted:#5d636b; --line:#dde0e4;
+  --accent:#f2b600; --accent-ink:#1a1400; --green:#1f8a4c; --stripe-a:#111316; --stripe-b:#ffffff;
+  --display:"Big Shoulders Display", "Oswald", "Arial Narrow", sans-serif;
+  --body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1113; --surface:#171a1d; --ink:#eef0f2; --muted:#9aa1a9; --line:#2a2f34;
+  --accent:#ffc61a; --accent-ink:#1a1400; --green:#3cc47a; --stripe-a:#eef0f2; --stripe-b:#0f1113; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1113; --surface:#171a1d; --ink:#eef0f2; --muted:#9aa1a9; --line:#2a2f34;
+  --accent:#ffc61a; --accent-ink:#1a1400; --green:#3cc47a; --stripe-a:#eef0f2; --stripe-b:#0f1113; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+a{color:inherit}
+.wrap{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+
+.stripes{height:14px;margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px)));
+  background:repeating-linear-gradient(90deg,var(--stripe-a) 0 22px,var(--stripe-b) 22px 44px);border-bottom:1px solid var(--stripe-a)}
+
+header{display:flex;flex-direction:column;gap:14px;padding-top:28px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(52px,14vw,92px);line-height:.88;margin:0;text-transform:uppercase;letter-spacing:.005em;text-wrap:balance}
+h1 span{display:block;color:var(--muted);font-weight:700}
+.lede{margin:0;color:var(--muted);max-width:52ch}
+
+.base{background:var(--surface);border:1.5px solid var(--ink);border-radius:4px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.stadium{border-style:dashed}
+.base .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.base .addr{font-size:19px;font-weight:700;line-height:1.3}
+.base .addr small{display:block;font-weight:400;font-size:14px;color:var(--muted);margin-top:2px}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:600 14px/1 var(--body);padding:11px 14px;border-radius:3px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn:focus-visible,.chip:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+nav.jump{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px)));
+  padding:10px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+nav.jump::-webkit-scrollbar{display:none}
+.chip{display:inline-block;font-size:13px;font-weight:600;text-decoration:none;padding:6px 11px;border-radius:999px;border:1px solid var(--line);margin-right:6px;background:var(--surface)}
+
+section{display:flex;flex-direction:column;gap:16px;scroll-margin-top:64px}
+h2{font-family:var(--display);font-weight:900;font-size:34px;line-height:1;margin:0;text-transform:uppercase;display:flex;align-items:baseline;gap:10px}
+h2 .n{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.05em}
+h3{font-size:15px;margin:0;font-weight:700}
+p{margin:0}
+.muted{color:var(--muted)}
+
+/* timeline */
+.days{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:560px){.days{grid-template-columns:1fr}}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:16px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.day-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.day-head b{font-family:var(--display);font-size:24px;text-transform:uppercase;letter-spacing:.01em}
+.day-head span{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+ol.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+ol.tl li{display:grid;grid-template-columns:62px 1fr;gap:10px;align-items:baseline}
+ol.tl time{font-family:var(--mono);font-weight:700;font-size:14px;font-variant-numeric:tabular-nums}
+ol.tl li.key time{background:var(--accent);color:var(--accent-ink);padding:1px 5px;border-radius:2px;justify-self:start}
+ol.tl li span{font-size:15px;min-width:0}
+
+/* metro */
+.route{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:18px 16px;display:flex;flex-direction:column;gap:14px}
+.line-tag{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px}
+.line-tag i{width:26px;height:6px;border-radius:3px;background:var(--green);display:inline-block}
+.stops{list-style:none;margin:0;padding:0 0 0 4px;position:relative}
+.stops::before{content:"";position:absolute;left:10px;top:12px;bottom:12px;width:5px;background:var(--green);border-radius:3px}
+.stops li{position:relative;padding:6px 0 6px 32px;font-size:15px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.stops li::before{content:"";position:absolute;left:3px;top:50%;width:19px;height:19px;margin-top:-9.5px;border-radius:50%;background:var(--surface);border:4px solid var(--green)}
+.stops li.mid{color:var(--muted);font-size:13px;font-style:italic}
+.stops li.mid::before{width:9px;height:9px;margin-top:-4.5px;left:8px;border-width:0;background:var(--green)}
+.stops li.end{font-weight:700}
+.stops li.end::before{background:var(--accent);border-color:var(--ink)}
+.stops em{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.note{border-left:4px solid var(--accent);background:var(--surface);padding:12px 14px;border-radius:0 4px 4px 0;font-size:15px}
+.note b{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}}
+.cell{border-top:2px solid var(--ink);padding-top:10px;display:flex;flex-direction:column;gap:4px;min-width:0}
+
+/* places */
+ul.places{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+ul.places li{padding:16px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:start}
+ul.places .name{font-weight:700;font-size:18px;line-height:1.25}
+ul.places .meta{grid-column:1;color:var(--muted);font-size:15px}
+ul.places .tags{grid-column:1;display:flex;flex-wrap:wrap;gap:6px}
+ul.places .tag{font-family:var(--mono);font-size:11px;letter-spacing:.04em;padding:3px 7px;border:1px solid var(--line);border-radius:2px;color:var(--muted)}
+ul.places .map{grid-column:2;grid-row:1 / span 3;align-self:center;font-size:13px;font-weight:600;text-decoration:none;padding:8px 10px;border:1.5px solid var(--ink);border-radius:3px;white-space:nowrap}
+.price{font-family:var(--mono);font-weight:700}
+
+/* checklist */
+.check{display:flex;flex-direction:column;gap:2px}
+.check label{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.check input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--ink)}
+.check b{display:block}
+.check span{color:var(--muted);font-size:15px}
+.check input:checked + div b{text-decoration:line-through;color:var(--muted)}
+.progress{font-family:var(--mono);font-size:13px;color:var(--muted)}
+
+footer{font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+
+<div class="stripes" aria-hidden="true"></div>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Wyjazd na mecz · 7 osób · sob–nd</div>
+    <h1>Newcastle <span>Weekend '26</span></h1>
+    <p class="lede">Wszystko w jednym miejscu: kiedy, jak dojechać, gdzie zjeść i na piwo. Zapisz link na telefonie.</p>
+    <div class="base">
+      <div class="lbl">Nocleg</div>
+      <div class="addr" id="addr">3 Graingerville South, Newcastle upon Tyne, NE4 6UH<small>West End, okolice Westgate Road · ok. 15–20 min pieszo od centrum</small></div>
+      <div class="btns">
+        <a class="btn primary" href="https://maps.google.com/?q=3+Graingerville+South+Newcastle+upon+Tyne+NE4+6UH" target="_blank" rel="noopener">Nawiguj do noclegu →</a>
+        <button class="btn" id="copy" type="button">Kopiuj adres</button>
+      </div>
+    </div>
+    <div class="base stadium">
+      <div class="lbl">Mecz · stadion</div>
+      <div class="addr">St James' Park, Strawberry Place, NE1 4ST<small>Bilet: Shortside Lower, czyli dolny poziom trybuny za bramką. Numer bramki wejściowej (turnstile) jest na bilecie, trybuny są oznakowane wokół stadionu.</small></div>
+      <div class="btns">
+        <a class="btn primary" href="https://maps.google.com/?q=St+James'+Park+Strawberry+Place+Newcastle+NE1+4ST" target="_blank" rel="noopener">Nawiguj na stadion →</a>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&origin=3+Graingerville+South+Newcastle+NE4+6UH&destination=St+James'+Park+Newcastle+NE1+4ST&travelmode=walking" target="_blank" rel="noopener">Trasa pieszo z noclegu</a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="jump" aria-label="Sekcje">
+    <a class="chip" href="#plan">Plan</a><a class="chip" href="#dojazd">Dojazd</a><a class="chip" href="#jedzenie">Jedzenie</a><a class="chip" href="#piwo">Piwo</a><a class="chip" href="#sklepy">Sklepy</a><a class="chip" href="#papiery">Papiery</a>
+  </nav>
+
+  <section id="plan">
+    <h2><span class="n">01</span>Plan</h2>
+    <div class="days">
+      <div class="day">
+        <div class="day-head"><b>Sobota</b><span>przylot</span></div>
+        <ol class="tl">
+          <li class="key"><time>08:10</time><span>Lądowanie, Newcastle International (NCL)</span></li>
+          <li><time>08:30</time><span>Paszporty i bagaże (do ok. 08:45)</span></li>
+          <li><time>08:50</time><span>Metro z terminalu, Green Line</span></li>
+          <li><time>09:20</time><span>Centrum, wysiadka Central Station</span></li>
+          <li><time>09:30</time><span>Kwatera, zostawiamy bagaże, wyjście na miasto (do 10:00)</span></li>
+        </ol>
+      </div>
+      <div class="day">
+        <div class="day-head"><b>Niedziela</b><span>powrót</span></div>
+        <ol class="tl">
+          <li class="key"><time>14:30</time><span>Zbiórka, metro z centrum na lotnisko</span></li>
+          <li><time>15:00</time><span>Odprawa i security (2 h zapasu)</span></li>
+          <li class="key"><time>17:00</time><span>Wylot do Polski</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="dojazd">
+    <h2><span class="n">02</span>Dojazd</h2>
+    <div class="route">
+      <div class="line-tag"><i></i>Metro · Green Line → kierunek South Hylton</div>
+      <ol class="stops">
+        <li><span>Airport</span><em>start, stacja w terminalu</em></li>
+        <li class="mid"><span>10 stacji po drodze</span></li>
+        <li><span>Haymarket</span></li>
+        <li><span>Monument</span></li>
+        <li class="end"><span>Central Station</span><em>ok. 25 min · wysiadka</em></li>
+      </ol>
+    </div>
+    <div class="note"><b>Każdy płaci sam</b>Metro działa na zbliżeniowe Pay As You Go. Przykładasz własną kartę albo telefon na wejściu i na wyjściu. Jedna karta na jedną osobę.</div>
+    <div class="grid2">
+      <div class="cell"><h3>Pieszo z centrum</h3><p class="muted">Ok. 15–20 min z Central Station na zachód, w stronę Westgate Road.</p></div>
+      <div class="cell"><h3>Uber / taxi</h3><p class="muted">Przy 7 osobach zamawiamy 2 auta. Po podziale to kilka funtów na głowę.</p></div>
+    </div>
+  </section>
+
+  <section id="jedzenie">
+    <h2><span class="n">03</span>Jedzenie</h2>
+    <ul class="places">
+      <li>
+        <div class="name">The Grainger Market</div>
+        <div class="meta">Kultowy kryty targ ze street foodem. Duże burgery w Eats, azjatyckie stoiska, empanadas.</div>
+        <div class="tags"><span class="tag">targ</span><span class="tag">centrum</span></div>
+        <a class="map" href="https://maps.google.com/?q=Grainger+Market+Newcastle" target="_blank" rel="noopener">Mapa →</a>
+      </li>
+      <li>
+        <div class="name">Pub grub i street food</div>
+        <div class="meta">Jedzenie w lokalnych pubach: smash burgery, pizza na grubym cieście. Sycący posiłek za <span class="price">£8–12</span>.</div>
+        <div class="tags"><span class="tag">w pubach</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="piwo">
+    <h2><span class="n">04</span>Piwo</h2>
+    <ul class="places">
+      <li>
+        <div class="name">The Free Trade Inn</div>
+        <div class="meta">Legenda nad Tyne z widokiem na mosty. Dobry wybór krafów w uczciwych cenach.</div>
+        <div class="tags"><span class="tag">kraft</span><span class="tag">widok</span></div>
+        <a class="map" href="https://maps.google.com/?q=The+Free+Trade+Inn+Newcastle" target="_blank" rel="noopener">Mapa →</a>
+      </li>
+      <li>
+        <div class="name">The Hancock</div>
+        <div class="meta">Pub przedmeczowy. Dobra atmosfera, szybka obsługa, rozsądne ceny.</div>
+        <div class="tags"><span class="tag">przed meczem</span></div>
+        <a class="map" href="https://maps.google.com/?q=The+Hancock+Newcastle" target="_blank" rel="noopener">Mapa →</a>
+      </li>
+      <li>
+        <div class="name">The Trent House</div>
+        <div class="meta">Drugi pewniak przed meczem, ten sam klimat i ceny.</div>
+        <div class="tags"><span class="tag">przed meczem</span></div>
+        <a class="map" href="https://maps.google.com/?q=The+Trent+House+Newcastle" target="_blank" rel="noopener">Mapa →</a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="sklepy">
+    <h2><span class="n">05</span>Sklepy</h2>
+    <ul class="places">
+      <li>
+        <div class="name">Tesco Express / Sainsbury's Local</div>
+        <div class="meta">Okolice Westgate Road. Szybkie śniadanie, napoje, przekąski na drogę.</div>
+        <div class="tags"><span class="tag">blisko noclegu</span></div>
+        <a class="map" href="https://maps.google.com/?q=Tesco+Express+Westgate+Road+Newcastle" target="_blank" rel="noopener">Mapa →</a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="papiery">
+    <h2><span class="n">06</span>Papiery</h2>
+    <div class="progress" id="prog">0 / 4 gotowe</div>
+    <div class="check" id="checklist">
+      <label><input type="checkbox" id="c-pass"><div><b>Ważny paszport</b><span>Każdy ma swój, przy sobie.</span></div></label>
+      <label><input type="checkbox" id="c-eta"><div><b>ETA zatwierdzone</b><span>Electronic Travel Authorisation. W pełni cyfrowe, przypięte do paszportu. Nic nie drukujesz.</span></div></label>
+      <label><input type="checkbox" id="c-card"><div><b>Revolut / karta wielowalutowa</b><span>UK jest praktycznie bezgotówkowe. Ta sama karta do metra.</span></div></label>
+      <label><input type="checkbox" id="c-net"><div><b>eSIM albo roaming UK</b><span>Żeby mieć internet od razu po lądowaniu.</span></div></label>
+    </div>
+  </section>
+
+  <footer>Newcastle upon Tyne · Weekend 2026 · Howay the lads</footer>
+</div>
+
+<script>
+(function(){
+  var btn=document.getElementById('copy');
+  var text='3 Graingerville South, Newcastle upon Tyne, NE4 6UH';
+  btn.addEventListener('click',function(){
+    function done(){btn.textContent='Skopiowano';setTimeout(function(){btn.textContent='Kopiuj adres'},1800)}
+    function fallback(){var r=document.createRange();r.selectNodeContents(document.getElementById('addr').firstChild.parentNode);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Zaznaczono, skopiuj'}
+    try{navigator.clipboard.writeText(text).then(done,fallback)}catch(e){fallback()}
+  });
+  var boxes=[].slice.call(document.querySelectorAll('#checklist input'));
+  var prog=document.getElementById('prog');
+  function update(){var n=boxes.filter(function(b){return b.checked}).length;prog.textContent=n+' / '+boxes.length+' gotowe'}
+  boxes.forEach(function(b){
+    try{if(localStorage.getItem('ncl-'+b.id)==='1')b.checked=true}catch(e){}
+    b.addEventListener('change',function(){try{localStorage.setItem('ncl-'+b.id,b.checked?'1':'0')}catch(e){}update()});
+  });
+  update();
+})();
+</script>
+</body>
+</html>
