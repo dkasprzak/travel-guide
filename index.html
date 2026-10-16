@@ -53,6 +53,7 @@ nav.jump{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:v
   padding:10px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;scrollbar-width:none}
 nav.jump::-webkit-scrollbar{display:none}
 .chip{display:inline-block;font-size:13px;font-weight:600;text-decoration:none;padding:6px 11px;border-radius:999px;border:1px solid var(--line);margin-right:6px;background:var(--surface)}
+.chip.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 
 section{display:flex;flex-direction:column;gap:16px;scroll-margin-top:64px}
 h2{font-family:var(--display);font-weight:900;font-size:34px;line-height:1;margin:0;text-transform:uppercase;display:flex;align-items:baseline;gap:10px}
@@ -126,9 +127,9 @@ footer{font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px 
     <p class="lede">Wszystko w jednym miejscu: kiedy, jak dojechać, gdzie zjeść i na piwo. Zapisz link na telefonie.</p>
     <div class="base">
       <div class="lbl">Nocleg</div>
-      <div class="addr" id="addr">3 Graingerville South, Newcastle upon Tyne, NE4 6UH<small>West End, okolice Westgate Road · ok. 15–20 min pieszo od centrum</small></div>
+      <div class="addr" id="addr">Graingerville South, 4 Westgate Rd, Newcastle upon Tyne, NE4 6UH<small>West End, okolice Westgate Road · ok. 15–20 min pieszo od centrum</small></div>
       <div class="btns">
-        <a class="btn primary" href="https://maps.google.com/?q=3+Graingerville+South+Newcastle+upon+Tyne+NE4+6UH" target="_blank" rel="noopener">Nawiguj do noclegu →</a>
+        <a class="btn primary" href="https://maps.google.com/?q=Graingerville+South,+4+Westgate+Rd,+Newcastle+upon+Tyne+NE4+6UH" target="_blank" rel="noopener">Nawiguj do noclegu →</a>
         <button class="btn" id="copy" type="button">Kopiuj adres</button>
       </div>
     </div>
@@ -137,7 +138,7 @@ footer{font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px 
       <div class="addr">St James' Park, Strawberry Place, NE1 4ST<small>Bilet: Shortside Lower, czyli dolny poziom trybuny za bramką. Numer bramki wejściowej (turnstile) jest na bilecie, trybuny są oznakowane wokół stadionu.</small></div>
       <div class="btns">
         <a class="btn primary" href="https://maps.google.com/?q=St+James'+Park+Strawberry+Place+Newcastle+NE1+4ST" target="_blank" rel="noopener">Nawiguj na stadion →</a>
-        <a class="btn" href="https://www.google.com/maps/dir/?api=1&origin=3+Graingerville+South+Newcastle+NE4+6UH&destination=St+James'+Park+Newcastle+NE1+4ST&travelmode=walking" target="_blank" rel="noopener">Trasa pieszo z noclegu</a>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&origin=Graingerville+South,+4+Westgate+Rd,+Newcastle+upon+Tyne+NE4+6UH&destination=St+James'+Park+Newcastle+NE1+4ST&travelmode=walking" target="_blank" rel="noopener">Trasa pieszo z noclegu</a>
       </div>
     </div>
   </header>
@@ -234,10 +235,10 @@ footer{font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px 
     <h2><span class="n">05</span>Sklepy</h2>
     <ul class="places">
       <li>
-        <div class="name">Tesco Express / Sainsbury's Local</div>
-        <div class="meta">Okolice Westgate Road. Szybkie śniadanie, napoje, przekąski na drogę.</div>
-        <div class="tags"><span class="tag">blisko noclegu</span></div>
-        <a class="map" href="https://maps.google.com/?q=Tesco+Express+Westgate+Road+Newcastle" target="_blank" rel="noopener">Mapa →</a>
+        <div class="name">Asda Benwell</div>
+        <div class="meta">Mill Ln, Benwell, NE4 6QA. Szybkie śniadanie, napoje, przekąski na drogę.</div>
+        <div class="tags"><span class="tag">supermarket</span><span class="tag">blisko noclegu</span></div>
+        <a class="map" href="https://maps.google.com/?q=Asda+Benwell,+Mill+Ln,+Newcastle+upon+Tyne+NE4+6QA" target="_blank" rel="noopener">Mapa →</a>
       </li>
     </ul>
   </section>
@@ -259,7 +260,7 @@ footer{font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px 
 <script>
 (function(){
   var btn=document.getElementById('copy');
-  var text='3 Graingerville South, Newcastle upon Tyne, NE4 6UH';
+  var text='Graingerville South, 4 Westgate Rd, Newcastle upon Tyne, NE4 6UH';
   btn.addEventListener('click',function(){
     function done(){btn.textContent='Skopiowano';setTimeout(function(){btn.textContent='Kopiuj adres'},1800)}
     function fallback(){var r=document.createRange();r.selectNodeContents(document.getElementById('addr').firstChild.parentNode);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Zaznaczono, skopiuj'}
@@ -273,6 +274,30 @@ footer{font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px 
     b.addEventListener('change',function(){try{localStorage.setItem('ncl-'+b.id,b.checked?'1':'0')}catch(e){}update()});
   });
   update();
+
+  // Scroll spy: highlight the nav chip of the section currently under the sticky nav
+  var nav=document.querySelector('nav.jump');
+  var chips=[].slice.call(nav.querySelectorAll('.chip'));
+  var secs=chips.map(function(c){return document.getElementById(c.getAttribute('href').slice(1))});
+  var current=-1, ticking=false;
+  function spy(){
+    ticking=false;
+    var edge=nav.getBoundingClientRect().bottom+24, cur=-1;
+    secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<=edge)cur=i});
+    var de=document.documentElement;
+    if(window.innerHeight+window.scrollY>=de.scrollHeight-2)cur=secs.length-1;
+    if(cur===current)return;
+    current=cur;
+    chips.forEach(function(c,i){
+      c.classList.toggle('active',i===cur);
+      if(i===cur)c.setAttribute('aria-current','true');else c.removeAttribute('aria-current');
+    });
+    // keep the active chip visible in the horizontally scrolling nav without moving the page
+    if(cur>=0)nav.scrollLeft=chips[cur].offsetLeft-16;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(spy)}},{passive:true});
+  window.addEventListener('resize',spy);
+  spy();
 })();
 </script>
 </body>
