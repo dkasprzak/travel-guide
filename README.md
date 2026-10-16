@@ -1,4 +1,4 @@
-# Trip Guide
+# Travel Guide
 
 Przewodnik wyjazdowy w jednym pliku HTML: plan dnia, dojazd, jedzenie, puby, sklepy i checklista dokumentów. Działa na telefonie, w trybie jasnym i ciemnym, i nie potrzebuje żadnego builda.
 
